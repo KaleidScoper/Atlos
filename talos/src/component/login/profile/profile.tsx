@@ -16,7 +16,8 @@ interface ProfileModalProps {
   isSavingProfile: boolean;
   cardProfile: IdCardRenderModel;
   profileAvatar: number;
-  onAvatarCycle: () => void;
+  /** `1` = next avatar, `-1` = previous avatar */
+  onAvatarCycle: (direction: 1 | -1) => void;
   handleCloseProfile: () => Promise<void>;
   handleSaveProfile: () => Promise<void>;
   handleLogout: () => Promise<void>;
@@ -69,7 +70,8 @@ const ProfileModal = ({
           cardRef={cardRef}
           onCardMouseMove={handleCardMouseMove}
           onCardMouseLeave={handleCardMouseLeave}
-          onAvatarClick={onAvatarCycle}
+          {/* Shift+click cycles backward through the avatar table */}
+          onAvatarClick={(e) => onAvatarCycle(e.shiftKey ? -1 : 1)}
           avatarAriaLabel={t('idcard.profile.avatarHint')}
           avatarIndex={profileAvatar}
           editableName
