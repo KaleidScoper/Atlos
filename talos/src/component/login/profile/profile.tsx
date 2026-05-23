@@ -70,7 +70,6 @@ const ProfileModal = ({
           cardRef={cardRef}
           onCardMouseMove={handleCardMouseMove}
           onCardMouseLeave={handleCardMouseLeave}
-          {/* Shift+click cycles backward through the avatar table */}
           onAvatarClick={(e) => onAvatarCycle(e.shiftKey ? -1 : 1)}
           avatarAriaLabel={t('idcard.profile.avatarHint')}
           avatarIndex={profileAvatar}
